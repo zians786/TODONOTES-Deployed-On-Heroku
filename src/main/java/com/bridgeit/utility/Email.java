@@ -21,9 +21,9 @@ public class Email {
 	public Boolean registrationEmail(String to,String jwToken) {
 		Boolean status;
 		String url="https://bridgeit-todonotes.herokuapp.com/activate/"+jwToken;
-		final String from = "zee.ans43@gmail.com";// change accordingly
-		final String password = "27416982";
-
+		final String from = "strangedoctor786@gmail.com";// change accordingly
+		final String password = "deadpool";
+		System.out.println(url);
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -77,10 +77,12 @@ public class Email {
 
 
 	public Boolean forgetEmail(String to,String token) {
+		
 		Boolean status;
 		String url="https://bridgeit-todonotes.herokuapp.com/verifyToken/"+token;
 		final String from = "strangedoctor786@gmail.com";// change accordingly
 		final String password = "deadpool";
+		System.out.println(url);
 		Properties properties = System.getProperties();
 		properties.setProperty("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587"); // TLS Port
