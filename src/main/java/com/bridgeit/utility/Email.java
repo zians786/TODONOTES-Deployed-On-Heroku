@@ -21,8 +21,8 @@ public class Email {
 	public Boolean registrationEmail(String to,String jwToken) {
 		Boolean status;
 		String url="https://bridgeit-todonotes.herokuapp.com/activate/"+jwToken;
-		final String from = "strangedoctor786@gmail.com";// change accordingly
-		final String password = "deadpool";
+		final String from = "zee.ans43@gmail.com";// change accordingly
+		final String password = "27416982";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
