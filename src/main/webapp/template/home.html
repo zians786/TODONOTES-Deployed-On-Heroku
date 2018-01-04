@@ -369,8 +369,8 @@ placeholder="Date" show-todays-date="" min-date="date" ng-model="remind"  ng-cha
 
 
 <div ng-show="showPin" layout-padding><h4>Pinned</h4></div>
-		<div layout="row" layout-align="start start" layout-wrap layout-padding>
-			<div ng-repeat="note in readNotes | filter:{pinned:true}" flex={{flex}}>
+		<div layout="row" layout-align="start start" layout-wrap layout-padding layout-xs="column">
+			<div ng-repeat="note in readNotes | filter:{pinned:true}"  flex-gt-xs={{flex}} flex-xs="flex" >
 					
 				<md-card  ng-mouseenter="visible=''" ng-mouseleave="visible='hidden'"
 					style="background-color:{{note.color}};" >

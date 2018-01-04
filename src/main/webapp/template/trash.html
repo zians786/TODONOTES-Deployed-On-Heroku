@@ -12,8 +12,8 @@
 	
 	
 <div layout-padding><h4>Trash</h4></div>
-		<div layout="row" layout-align="center center" layout-wrap>
-			<div ng-repeat="note in readNotes | filter:{inTrash:true}"  flex={{flex}}>
+		<div layout="row" layout-align="center center" layout-wrap layout-xs="column">
+			<div ng-repeat="note in readNotes | filter:{inTrash:true}"  flex-gt-xs={{flex}} flex-xs="flex">
 					
 				<md-card ng-mouseenter="mouse=true" ng-mouseleave="mouse=false"
 					style="background-color:{{note.color}};" >
