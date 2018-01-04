@@ -1,0 +1,53 @@
+<nav-bar></nav-bar>
+
+<div layout="row" layout-align="center">
+
+<side-nav></side-nav>	
+
+<!-- <div class="container" layout="column" layout-align="center center">
+	 -->
+
+	<div flex="75" class="container" layout="column">
+	
+	
+	
+<div layout-padding><h4>Trash</h4></div>
+		<div layout="row" layout-align="center center" layout-wrap>
+			<div ng-repeat="note in readNotes | filter:{inTrash:true}"  flex={{flex}}>
+					
+				<md-card ng-mouseenter="mouse=true" ng-mouseleave="mouse=false"
+					style="background-color:{{note.color}};" >
+					
+					<div ng-if="note.image"><img ng-src={{note.image}} style=" max-width: 100%;"></div>
+					<md-card-title>
+					<div style="overflow-wrap: break-word;contenteditable="
+						false" class="md-headline">{{note.title}}</div>
+					</md-card-title>
+					<md-card-content>
+
+					<div style="overflow-wrap: break-word;" contenteditable="false"
+						aria-multiline="true" role="textbox">{{note.description}}</div>
+					</md-card-content>
+				<md-card-content>
+				
+<div ng-show="mouse" layout="row" layout-align="space-around center"
+					role="toolbar">
+
+					<md-menu-bar> <md-menu>
+
+					<div role="button" aria-label="More" ng-click="$mdMenu.open()">
+						<md-icon md-svg-icon="img/icons/more.svg"></md-icon>
+					</div>
+					<md-menu-content width="2" layout="column"> <md-menu-item>
+					<md-button ng-click="delete(note)">delete forever</md-button> </md-menu-item> <md-menu-item>
+					<md-button ng-click="restore(note)">restore</md-button> </md-menu-item> </md-menu-content> </md-menu> </md-menu-bar>
+
+
+				</div>
+
+				</md-card-content> </md-card>
+			</div>
+		</div>
+	
+	</div>
+</div>

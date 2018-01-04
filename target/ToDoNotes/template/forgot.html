@@ -1,0 +1,27 @@
+<div layout="row" layout-align="center center">
+
+<md-content flex="50" layout-padding="layout-padding"
+		ng-cloak="ng-cloak" class="login-form"> <md-card
+		layout="row" layout-align="space-around center"> 
+	         <md-card-content >
+					            <md-card-title>
+					                <md-card-title-text>
+					                  <span class="md-headline">Enter your Email</span>
+					                </md-card-title-text>
+					              </md-card-title>
+						          <form name="emailForm">
+					              <md-input-container class="md-icon-float md-block">
+					                <label>Email</label>
+					                <input type="email" name="email" ng-model="email" required=""/>
+					                <div ng-messages="emailForm.email.$error" role="alert" multiple="">
+
+					                  <div ng-message="required" class="my-message">Please enter your email.</div>
+					                </div>
+					              </md-input-container>
+
+					              <md-button ng-click="forgotPassword(email)" class="md-raised md-primary">&nbsp Reset password by email &nbsp</md-button>
+
+						          </form>
+						        </md-card-content>
+						         </md-content>
+</div>

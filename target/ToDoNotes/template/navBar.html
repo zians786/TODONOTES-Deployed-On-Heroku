@@ -1,0 +1,85 @@
+
+	
+	<div layout="column" ng-cloak>
+
+	<md-toolbar layout="row" layout-align="start center">
+
+	<div class="md-toolbar-tools" style="background-color: #fb0;">
+
+		<md-button ng-click="hideNav()" class="md-icon-button"
+			aria-label="Menu"> <md-icon
+			md-svg-icon="img/icons/menu.svg"></md-icon> </md-button>
+
+		<h4 style="color: black;">Google Keep</h4>
+		<div flex="5"></div>
+		<md-button class="md-icon-button" aria-label="Search"> <md-icon
+			md-svg-icon="img/icons/search.svg"></md-icon> </md-button>
+
+		<div flex="40" style=" border-radius:4px">
+			<md-autocomplete ng-click="search()" md-no-cache="true" md-selected-item="selectedItem"
+				md-items="item in items" md-search-text="searchText"
+				md-item-text="item.display" placeholder="Search here">
+		</div>
+
+		<div flex="10"></div>
+	
+		<md-button ng-click="changeView()" ng-show="view"
+			class="md-icon-button" aria-label="list"> <md-icon
+			md-svg-icon="img/icons/list.svg"></md-icon> </md-button>
+
+		<md-button ng-click="changeView()" ng-hide="view"
+			class="md-icon-button" aria-label="grid"> <md-icon
+			md-svg-icon="img/icons/grid.svg"></md-icon> </md-button>
+
+
+		<md-menu-bar flex-offset="15" ng-show="user.profilePicture"> <md-menu> <img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;" aria-label="profile" ng-click="$mdMenu.open()">
+	 <md-menu-content>
+	<!-- 	<div layout="row" layout-align="space-around center">
+		<img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;">
+		<div layout="column" layout-align="center start">
+		<div>{{user.userName}}</div><br>
+		<div>{{user.email}}</div><br>
+		</div>
+		</div>	
+	 -->
+	 <div layout="row" layout-align="start center" layout-padding><img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;" aria-label="profile">
+<div flex="5"></div><div layout="column">
+<span> <b>{{user.userName}}</b></span>
+<span> {{user.email}}</span>
+</div>
+</div>
+	 
+	 
+	 		
+			<md-divider></md-divider>
+		<md-button ng-click="logout()"> Sign out </md-button>
+		
+		 </md-menu-content> </md-menu> </md-menu-bar>
+
+			
+		<md-menu-bar ng-hide="user.profilePicture" flex-offset="15"> <md-menu> 
+		<div role="button" ng-click="$mdMenu.open()">
+		
+		<ng-avatar string="{{user.userName}}" bind="true" upper-case="true" auto-color="true" class="avatar" round-shape="true" ></ng-avatar>
+		</div>
+	 <md-menu-content>
+		<div layout="row" layout-align="space-around center">
+		<ng-avatar string="{{user.userName}}" bind="true" upper-case="true" auto-color="true" class="avatar" round-shape="true" ></ng-avatar>
+		<div layout="column" layout-align="center start">
+		<div>{{user.userName}}</div><br>
+		<div>{{user.email}}</div><br>
+		</div>
+		</div>	
+			
+			<md-divider></md-divider>
+		<md-button ng-click="logout()"> Sign out </md-button>
+		
+		 </md-menu-content> </md-menu> </md-menu-bar>
+		 			 
+		 
+		 
+<!-- <md-button ng-click="logout()"> {{user.userName}} logout </md-button>
+ -->	</div>
+	</md-toolbar>
+</div>
+	

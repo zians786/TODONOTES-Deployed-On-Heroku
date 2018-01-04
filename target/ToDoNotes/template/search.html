@@ -1,0 +1,269 @@
+
+	<div layout="column" ng-cloak>
+
+	<md-toolbar layout="row" layout-align="start center">
+
+	<div class="md-toolbar-tools"  style="color:white; background-color: rgb(62, 80, 180);">
+
+		<md-button ng-click="hideNav()" class="md-icon-button"
+			aria-label="Menu"> <md-icon
+			md-svg-icon="img/icons/menu.svg"></md-icon> </md-button>
+
+		<h4>Google Keep</h4>
+		<div flex="5"></div>
+		
+		<div flex="50" style="background:white; border-radius:4px" layout="row">
+		<md-button class="md-icon-button" aria-label="Search"> <md-icon 
+			md-svg-icon="img/icons/search.svg" style="color:#4285f4;"></md-icon> </md-button>
+
+		<div flex>
+			<md-autocomplete  md-no-cache="true" md-selected-item="selectedItem"
+				md-items="item in searchAll(searchText)" 
+				md-search-text-change="searchAll(searchText)"
+				md-min-length="2"
+				md-search-text="searchText"
+				md-item-text="item.title" placeholder="Search here">
+		</div>
+			
+		</div>
+
+		<div flex="10"></div>
+	
+		<md-button ng-click="changeView()" ng-show="view"
+			class="md-icon-button" aria-label="list"> <md-icon
+			md-svg-icon="img/icons/list.svg"></md-icon> </md-button>
+
+		<md-button ng-click="changeView()" ng-hide="view"
+			class="md-icon-button" aria-label="grid"> <md-icon
+			md-svg-icon="img/icons/grid.svg"></md-icon> </md-button>
+
+
+		<md-menu-bar flex-offset="10" ng-show="user.profilePicture"> <md-menu> <img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;" aria-label="profile" ng-click="$mdMenu.open()">
+	 <md-menu-content>
+	<!-- 	<div layout="row" layout-align="space-around center">
+		<img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;">
+		<div layout="column" layout-align="center start">
+		<div>{{user.userName}}</div><br>
+		<div>{{user.email}}</div><br>
+		</div>
+		</div>	
+	 -->
+	 <div layout="row" layout-align="start center" layout-padding><img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;" aria-label="profile">
+<div flex="5"></div><div layout="column">
+<span> <b>{{user.userName}}</b></span>
+<span> {{user.email}}</span>
+</div>
+</div>
+	 
+	 
+	 		
+			<md-divider></md-divider>
+		<md-button ng-click="logout()"> Sign out </md-button>
+		
+		 </md-menu-content> </md-menu> </md-menu-bar>
+
+			
+		<md-menu-bar ng-hide="user.profilePicture"> <md-menu> 
+		<div role="button" ng-click="$mdMenu.open()">
+		
+		<ng-avatar string="{{user.userName}}" bind="true" upper-case="true" auto-color="true" class="avatar" round-shape="true" ></ng-avatar>
+		</div>
+	 <md-menu-content>
+		<div layout="row" layout-align="space-around center">
+		<ng-avatar string="{{user.userName}}" bind="true" upper-case="true" auto-color="true" class="avatar" round-shape="true" ></ng-avatar>
+		<div layout="column" layout-align="center start">
+		<div>{{user.userName}}</div><br>
+		<div>{{user.email}}</div><br>
+		</div>
+		</div>	
+			
+			<md-divider></md-divider>
+		<md-button ng-click="logout()"> Sign out </md-button>
+		
+		 </md-menu-content> </md-menu> </md-menu-bar>
+		 			 
+		 
+		 
+<!-- <md-button ng-click="logout()"> {{user.userName}} logout </md-button>
+ -->	</div>
+	</md-toolbar>
+</div>
+
+
+<div layout="row" layout-align="center">
+
+<side-nav></side-nav>	
+
+	<div flex="75" class="container" layout="column">
+
+
+
+
+		<div layout="row" layout-align="{{align1}} {{align2}}" layout-wrap layout-padding>
+			<div ng-repeat="note in searchNotes" flex={{flex}}>
+
+				<md-card  ng-mouseenter="visible=''" ng-mouseleave="visible='hidden'"
+					style="background-color:{{note.color}};" >
+	
+				<div role="button" ng-click="pin(note)" aria-label="Pin" flex="10" flex-offset="90">
+						<md-icon style="visibility:{{visible}};" md-svg-icon="img/icons/pin1.svg"></md-icon>
+					</div>
+	
+				
+				<div ng-click=showDialog(note)>
+				
+					<div ng-if="note.image"><img ng-src={{note.image}} style=" max-width: 100%;"></div>
+					<md-card-title>
+					
+					<div style="overflow-wrap: break-word;" contenteditable="false" class="md-headline">{{note.title}}</div>
+					</md-card-title>
+					<md-card-content>
+
+					<div style="overflow-wrap: break-word;" contenteditable="false"
+						aria-multiline="true" role="textbox">{{note.description}}</div>
+					
+							
+					</md-card-content>
+					
+					</div>
+				
+				<md-card-content>
+				
+		<!-- 		for Collaborator -->
+			<div ng-repeat="collUser in note.sharedUser" layout="row">
+			<div ng-if="collUser.userId" ng-click="showCollab(note)">
+<img ng-show="collUser.profilePicture" ng-src={{collUser.profilePicture}} style="border-radius:45px; max-width: 100%;" aria-label="profile">
+<div ng-hide="collUser.profilePicture">
+<ng-avatar string="{{collUser.userName}}" bind="true" upper-case="true" auto-color="true" class="avatar" round-shape="true" ></ng-avatar>
+</div>			
+			</div>
+			</div>	
+				
+				
+				
+		
+				
+			<!-- 	for reminder -->
+			
+							<div ng-if="note.reminder"><br>
+				<span style="background-color:white;">{{ note.reminder | date :  "yyyy-MM-dd HH:mm:ss"}}
+				<md-icon ng-click="note.reminder='';updateNote(note)"  md-svg-icon="img/icons/cross.svg" style="height:16px;width:16px;min-height:16px;min-width:16px;"></md-icon></span>
+				</div>	
+				<div ng-if="note.label" layout="row" layout-wrap>
+				
+				
+		<!-- for label -->	
+		
+							<div ng-repeat="labels in note.label"><br>
+				<span style="background-color:white;">{{labels.labelName}}
+				<md-icon ng-click="deleteNoteLabel(labels.labelId,note.noteId)"  md-svg-icon="img/icons/cross.svg" style="height:16px;width:16px;min-height:16px;min-width:16px;"></md-icon></span>
+				</div>	
+				</div>
+				
+<!-- Notes Option toolbar -->
+
+
+<div style="visibility:{{visible}};" layout="row" layout-align="space-around center"
+					role="toolbar">
+
+		<md-menu-bar> <md-menu>
+				<div role="button" ng-click="$mdMenu.open()">
+					 <md-icon md-svg-icon="img/icons/remind.svg"  aria-label="Remind me" >
+				</div>
+	
+	 <md-menu-content>
+	 <div layout="column">
+
+
+
+<div layout-padding>Reminder :</div>
+<md-divider></md-divider>
+<md-button ng-click="reminderSet(note,0)" layout="row" layout-align="space-between center"><span>Later today</span><span>8:00 PM</span></md-button>
+<md-button ng-click="reminderSet(note,1)" layout="row" layout-align="space-between center"><span>Tomorrow</span><span>8:00 AM</span></md-button>
+<md-button ng-click="reminderSet(note,2)" layout="row" layout-align="space-between center"><span>Next Week</span><span>MON, 8:00 AM</span></md-button>
+<br>
+<md-divider></md-divider>
+<div layout-padding>Pickup Manually :</div>
+<br>
+<span layout-padding>Select Date and Time</span>
+
+	<md-input-container>	
+<input mdc-datetime-picker date="true" time="true" type="text" id="datetime"
+placeholder="Date" show-todays-date="" min-date="date" ng-model="remind"  ng-change="reminder(note,remind)" class=" md-input" readonly="readonly">
+</md-input-container>
+
+	
+		 </div></md-menu-content> </md-menu> </md-menu-bar>					
+
+
+		<!-- 			<div role="button" aria-label="Remind me">
+						<md-icon md-svg-icon="img/icons/remind.svg"></md-icon>
+					</div> -->
+					<div ng-click="showCollab(note)" role="button" aria-label="Collaborator">
+						<md-icon md-svg-icon="img/icons/collaborate.svg"></md-icon>
+					</div>
+					<color-picker color="color" options="options"
+						on-color-changed="colorChanged(newColor,note)"></color-picker>
+					
+					<div ng-click="uploadImage(note)" role="button" aria-label="Add image">
+					<input ng-show="false" id="image" type='file' ng-model-instant ng-model="file" onchange="angular.element(this).scope().imageUpload(this)" />
+					
+						<md-icon md-svg-icon="img/icons/image.svg"></md-icon>
+					</div>
+	
+					<div role="button" ng-click="archive(note)" aria-label="Archive">
+						<md-icon md-svg-icon="img/icons/archive.svg"></md-icon>
+					</div>
+					
+
+ 					<md-menu-bar> <md-menu>
+
+					<div role="button" aria-label="More" ng-click="$mdMenu.open()">
+						<md-icon md-svg-icon="img/icons/more.svg"></md-icon>
+					</div>
+					<md-menu-content width="2" layout="column"> <md-menu-item>
+					<md-button ng-click="trash(note)">Delete</md-button> </md-menu-item>
+ 				
+					<md-menu-item>
+					<md-button  ng-click="socialShare(note)"> Share on fb</md-button> </md-menu-item>
+<!--
+ <md-menu-item> <md-button ng-click="label()">Add label</md-button> </md-menu-item> 
+ --> 
+ 
+
+				    <md-menu-item>
+					 <md-menu>
+
+					<md-button ng-click="$mdMenu.open()">Add label</md-button>
+				<!-- 	<div role="button" aria-label="More" ng-click="$mdMenu.open()">Add Label
+						<md-icon md-svg-icon="img/icons/more.svg"></md-icon>
+					</div> -->
+					<md-menu-content width="4"> 
+					
+					<md-menu-item>
+						
+						
+  <md-input-container md-no-float class="md-block">
+      <md-icon md-svg-src="img/icons/cross.svg"></md-icon>
+      <input ng-model="label.labelName" type="text" placeholder="Create new label">
+         <md-icon ng-click="addLabel(label)" md-svg-src="img/icons/check.svg"></md-icon></md-input-container>
+						
+						
+					 </md-menu-item>
+					
+					<md-menu-item ng-repeat="label in readLabel" layout-padding> 
+					 <md-checkbox   ng-click="addNoteLabel(label.labelId,note.noteId)" aria-label="Checkbox"><span>{{label.labelName}}</span>
+            			</md-checkbox></md-menu-item>
+            
+             
+     
+             </md-menu-content> </md-menu> </md-menu-item>
+             
+             </md-menu-content> </md-menu> </md-menu-bar>
+
+				</div>
+				</md-card-content> </md-card>
+			</div>
+		</div>
+</div>
+</div>

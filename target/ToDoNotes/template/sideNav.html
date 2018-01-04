@@ -1,0 +1,38 @@
+
+<div ng-show="showNav" flex="15">
+
+
+	<md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+	<md-list >
+	<md-list-item> 
+	
+	<md-button  ng-click="home()" aria-label="Notes" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/notes.svg"> <span flex-offset="15">Notes</span>
+	</md-button> </md-list-item>
+	 
+	  <md-list-item> 
+	<md-button
+		aria-label="Reminder" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/remind.svg"></md-icon> <span flex-offset="15">Reminder</span>
+	</md-button> </md-list-item> </md-list> <md-divider></md-divider> 
+	
+	
+	<md-list>
+	
+	 <md-list-item layout="row" layout-align="space-around center">
+	<span flex>Label
+		</span> <md-button ng-click="showLabelDialog()" >Edit</md-button></md-list-item>
+		
+	<md-list-item ng-repeat="label in readLabel" >
+	<md-button ng-click="getNoteByLabel(label.labelName);showLabels()" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/label_black.svg"></md-icon> <span flex-offset="10">{{label.labelName}}</span> </md-button> </md-list-item>	
+		 
+	<md-list-item><md-button ng-click="showLabelDialog()" aria-label="" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/add.svg"></md-icon> <span flex-offset="10">Create
+		new label</span> </md-button> </md-list-item>
+		
+		
+		
+		 </md-list> <md-divider></md-divider> <md-list> <md-list-item>
+	<md-button ng-click="archivedNotes()" aria-label="Archive" flex layout="row" layout-align="start center">
+	<img flex-offset="15" ng-src="img/icons/archive.svg"></md-icon> <span flex-offset="15">Archive</span> </md-button> </md-list-item> <md-list-item>
+	<md-button ng-click="trashNotes()" aria-label="Trash" flex layout="row" layout-align="start center">
+	<img flex-offset="15" ng-src="img/icons/delete.svg"></md-icon> <span flex-offset="15">Trash</span> </md-button> </md-list-item> </md-list> </md-sidenav>
+
+</div>

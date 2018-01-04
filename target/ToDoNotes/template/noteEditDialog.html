@@ -1,0 +1,34 @@
+<md-dialog>
+
+<md-card >	
+<md-card-content>
+
+
+	<div contenteditable="true" data-text="Title" ng-model="note.title"  ng-show="showTitle"  style=" font-weight: bold;width:500px;border:0px;outline:0px"></div>
+<br ng-show="showTitle">
+ <div contenteditable="true" data-text="Take a note..." ng-model="note.description"   ng-click="expandDiv()" style="color:Grey;width:500px;border:0px;outline:0px"></div>
+<br ng-show="showTitle">
+
+
+<div ng-show="showTitle" layout="row" layout-align="space-around center" role="toolbar">
+
+<div role="button"  aria-label="Remind me"><md-icon md-svg-icon="img/icons/remind.svg"></md-icon></div>
+<div role="button"  aria-label="Collaborator"><md-icon md-svg-icon="img/icons/collaborate.svg"></md-icon></div>
+<div role="button"  aria-label="Change color"><md-icon md-svg-icon="img/icons/color.svg"></md-icon></div>
+<div role="button"  aria-label="Add image"><md-icon md-svg-icon="img/icons/image.svg"></md-icon></div>
+<div role="button"  aria-label="Archive"><md-icon md-svg-icon="img/icons/archive.svg"></md-icon></div>
+<div role="button"  aria-label="More"><md-icon md-svg-icon="img/icons/more.svg"></md-icon></div>
+<md-button ng-show="showTitle" ng-click="addNote()">Done</md-button>
+</div>
+
+<!-- 	<div role="button" class="iconProperty" aria-label="Remind me" aria-disabled="false" tabindex="0" style="user-select: none;">
+
+	<md-icon md-svg-icon="img/icons/remind.svg"></md-icon></div>
+	<md-button ng-show="showTitle" ng-click="addNote()">Done</md-button>
+ -->             
+    
+     
+</md-card-content>
+
+</md-card>
+<md-dialog>
