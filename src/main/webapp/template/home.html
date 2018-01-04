@@ -107,7 +107,7 @@ placeholder="Date" show-todays-date="" min-date="date" ng-model="remind"  ng-cha
 
 			<div style="visibility: hidden">
 				<div class="md-dialog-container" id="myStaticDialog" >
-					<md-dialog layout-padding flex=50> 
+					<md-dialog layout-padding flex-gt-xs="50" felx-xs="flex"> 
 					
 		 <md-card-content>
 					<div ng-if="notes.image"><img ng-src={{notes.image}} style=" max-width: 100%;"></div>	
@@ -288,7 +288,7 @@ placeholder="Date" show-todays-date="" min-date="date" ng-model="remind"  ng-cha
 
 <div style="visibility: hidden">
 <div class="md-dialog-container" id="myCollabDialog">
-<md-dialog layout-padding flex="40">
+<md-dialog layout-padding flex-gt-xs="40" flex-xs="flex">
 <md-card-title>Collaborators </md-card-title>
 <md-divider></md-divider>
 <md-card-content layout="column" layout-padding>

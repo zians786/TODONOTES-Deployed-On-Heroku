@@ -8,8 +8,8 @@
 
 	<div flex="75" class="container" layout="column">
 
-			<div layout="row" layout-align="{{align1}} {{align2}}" layout-wrap layout-padding>
-			<div ng-repeat="note in allNotesByLabel" flex={{flex}}>
+			<div layout="row" layout-align="{{align1}} {{align2}}" layout-wrap layout-padding layout-xs="column">
+			<div ng-repeat="note in allNotesByLabel" flex-gt-xs={{flex}} flex-xs="flex" >
 
 				<md-card  ng-mouseenter="visible=''" ng-mouseleave="visible='hidden'"
 					style="background-color:{{note.color}};" >
