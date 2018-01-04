@@ -23,8 +23,25 @@ public class Email {
 		String url="https://bridgeit-todonotes.herokuapp.com/activate/"+jwToken;
 		final String from = "strangedoctor786@gmail.com";// change accordingly
 		final String password = "deadpool";
-		Properties properties = System.getProperties();
-		properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+		Properties properties = new Properties();
+		
+		
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.socketFactory.port", "465");
+		properties.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.port", "465");
+
+		
+		Session session = Session.getDefaultInstance(properties,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication("strangedoctor786@gmail.com","deadpool");
+					}
+				});
+		
+		/*properties.setProperty("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587"); // TLS Port
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true"); // enable STARTTLS
@@ -38,7 +55,8 @@ public class Email {
 			}
 		};
 		Session session = Session.getDefaultInstance(properties, authenticator);
-		// compose the message
+*/		// compose the message
+	
 		try {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
