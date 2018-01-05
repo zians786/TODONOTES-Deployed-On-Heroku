@@ -2,11 +2,16 @@
 	
 	<div layout="column" ng-cloak>
 
-	<md-toolbar layout="row" layout-align="start center">
+	<md-toolbar layout="row" layout-align="start center" flex-xs="flex">
 
 	<div class="md-toolbar-tools" style="background-color: #fb0;" flex-xs="flex">
 
-		<md-button ng-click="hideNav()" class="md-icon-button"
+		
+			<md-button hide-gt-xs ng-click="toggleList()" class="md-icon-button"
+			aria-label="Menu"> <md-icon
+			md-svg-icon="img/icons/menu.svg"></md-icon> </md-button>
+			
+			<md-button hide-xs ng-click="hideNav()" class="md-icon-button"
 			aria-label="Menu"> <md-icon
 			md-svg-icon="img/icons/menu.svg"></md-icon> </md-button>
 
@@ -31,6 +36,8 @@
 			class="md-icon-button" aria-label="grid"> <md-icon
 			md-svg-icon="img/icons/grid.svg"></md-icon> </md-button>
 
+
+	
 
 
 		<md-menu-bar flex-offset="15" ng-show="user.profilePicture"> <md-menu> <img ng-src={{user.profilePicture}} style="border-radius:45px; max-width: 100%;" aria-label="profile" ng-click="$mdMenu.open()">

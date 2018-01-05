@@ -1,5 +1,5 @@
 var todo=angular.module("TODO");
-todo.controller('noteController',function(toastr,$scope,noteService,loginService,labelService,$location,$mdDialog,$mdToast,$interval,$filter){
+todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,loginService,labelService,$location,$mdDialog,$mdToast,$interval,$filter){
 
 	var allNotes=[];
 	   
@@ -361,9 +361,18 @@ todo.controller('noteController',function(toastr,$scope,noteService,loginService
 	    	$scope.showNav=!$scope.showNav;
 	    	}	    
 	
+	    
+	    $scope.toggleList=function(){
+			$mdSidenav('left').toggle();
+		}
+		
+	    
 	$scope.search=function(){
 		$location.path('search');
 	}
+	
+	
+	
 	    
 	// for getting all archived notes
 	    $scope.archivedNotes=function(){
