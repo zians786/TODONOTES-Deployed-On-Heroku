@@ -15,12 +15,12 @@
 			<md-card style="background-color:{{note.color}};"> <md-card-content>
 
 
-			<div contenteditable="true" data-text="Title" ng-model="note.title"
+			<div contenteditable="true" data-text="Title" ng-bind-html="note.title"
 				ng-show="showTitle"
 				style="font-weight: bold; width: 500px; border: 0px; outline: 0px"></div>
 			<br ng-show="showTitle">
 			<div contenteditable="true" data-text="Take a note..."
-				ng-model="note.description" ng-click="expandDiv()"
+				ng-bind-html="note.description" ng-click="expandDiv()"
 				style="color: Grey; width: 500px; border: 0px; outline: 0px"></div>
 			<br ng-show="showTitle">
 
@@ -117,7 +117,7 @@ placeholder="Date" show-todays-date="" min-date="date" ng-model="remind"  ng-cha
 						style="font-weight: bold; width: 500px; border: 0px; outline: 0px"></div>
 					<br>
 					<div contenteditable="true" ng-bind-html="notes.description"
-						ng-model="notes.description"
+						ng-bind-html="notes.description"
 						style="color: Grey; width: 500px; border: 0px; outline: 0px"></div>
 					<br>
 
