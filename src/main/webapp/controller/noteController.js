@@ -361,14 +361,13 @@ todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,l
 	    	$scope.showNav=!$scope.showNav;
 	    	}	    
 	
-	    
-	    $scope.toggleList=function(){
-			$mdSidenav('left').toggle();
-		}
-		
-	    
 	$scope.search=function(){
 		$location.path('search');
+	}
+	
+	
+	$scope.toggleList=function(){
+		$mdSidenav('left').toggle();
 	}
 	
 	
@@ -386,8 +385,10 @@ todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,l
 	  
 	    
 	    $scope.reminderPage=function(){
-	    	$location.path('reminder');	
+	    	$location.path('reminder');
+	    	
 	    }
+	    
 	    
 	// for home notes
 	    $scope.home=function(){
@@ -545,6 +546,7 @@ todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,l
 	    
 	// for gettingNoteByLabel 
 	    $scope.getNoteByLabel=function(labelName){
+	    	console.log(allNotes);
 	    	$scope.allNotesByLabel=[];var index=0;
 	    	$scope.matchLabel=labelName;
 	    	for(var i=0;i<allNotes.length;i++){
